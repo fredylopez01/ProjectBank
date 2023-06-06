@@ -82,64 +82,60 @@ public class Bank {
 		}
 	}
 	
-	public void consign(Check check, double amount) throws ExceptionAmountCero {
+	public void consign(Check check, double amount, LocalDate date) throws ExceptionAmountCero {
 		if(amount > 0) {
 			check.setRemmant(check.getRemmant() + amount);
+			registerBankingTransaction(check, amount, date, "Ingreso");
 		} else {
 			throw new ExceptionAmountCero();
 		} 
 
 	}
 	
-	public void withdraw(Check check, double amount) throws ExceptionAmountCero {
+	public void withdraw(Check check, double amount, LocalDate date) throws ExceptionAmountCero {
 		if(amount < 0) {
 			check.setRemmant(check.getRemmant() + amount);
+			registerBankingTransaction(check, amount, date, "Egreso");
 		} else {
 			throw new ExceptionAmountCero();
 		}
 	}
 	
-	public boolean withdrawCurrent(Current check, double amount) throws ExceptionWithoutRemmant, ExceptionAmountCero {
+	public boolean withdrawCurrent(Current check, double amount, LocalDate date) throws ExceptionWithoutRemmant, ExceptionAmountCero {
 		if(amount <= (check.getRemmant()+check.getOverdraf())) {
-			withdraw(check, -amount);
+			withdraw(check, -amount, date);
 			return true;
 		} else {
 			throw new ExceptionWithoutRemmant();
 		}
 	}
 	
-	public boolean withdrawSavings(Savings check, double amount) throws ExceptionWithoutRemmant, ExceptionAmountCero {
+	public boolean withdrawSavings(Savings check, double amount, LocalDate date) throws ExceptionWithoutRemmant, ExceptionAmountCero {
 		if(check.getRemmant() > 0 && amount <= check.getRemmant()) {
-			withdraw(check, -amount);
+			withdraw(check, -amount, date);
 			return true;
 		} else {
 			throw new ExceptionWithoutRemmant();
 		}
 	}
 	
-	public void transfer(Check check, double amount, Check checkTwo) throws ExceptionWithoutRemmant, ExceptionAmountCero {
+	public void transfer(Check check, double amount, Check checkTwo, LocalDate date) throws ExceptionWithoutRemmant, ExceptionAmountCero {
 		if(check instanceof Current) {
-			transferCurrent((Current)check, amount, checkTwo);
+			transferCurrent((Current)check, amount, checkTwo, date);
 		} else if(check instanceof Savings) {
-			transferSavings((Savings)check, amount, checkTwo);
+			transferSavings((Savings)check, amount, checkTwo, date);
 		}
 	}
 	
-	public void transferCurrent(Current check, double amount, Check checkTwo) throws ExceptionWithoutRemmant, ExceptionAmountCero {
-		if(withdrawCurrent(check, amount)) {
-			withdraw(checkTwo, amount);
-			if(checkTwo.isBlocked()) {
-				checkTwo.setBlocked(false);
-			}
+	public void transferCurrent(Current check, double amount, Check checkTwo, LocalDate date) throws ExceptionWithoutRemmant, ExceptionAmountCero {
+		if(withdrawCurrent(check, amount, date)) {
+			consign(checkTwo, amount, date);
 		}
 	}
 	
-	public void transferSavings(Savings check, double amount, Check checkTwo) throws ExceptionWithoutRemmant, ExceptionAmountCero {
-		if(withdrawSavings(check, amount)) {
-			withdraw(checkTwo, amount);
-			if(checkTwo.isBlocked()) {
-				checkTwo.setBlocked(false);
-			}
+	public void transferSavings(Savings check, double amount, Check checkTwo, LocalDate date) throws ExceptionWithoutRemmant, ExceptionAmountCero {
+		if(withdrawSavings(check, amount, date)) {
+			consign(checkTwo, amount, date);
 		}
 	}
 	
@@ -150,6 +146,10 @@ public class Bank {
 				check.liquidateInterest(date);
 			}
 		}
+	}
+	
+	public void registerBankingTransaction(Check check, double amount, LocalDate date, String type) {
+		check.getBankingTransactions().add(new BankingTransaction(date, amount, type));
 	}
 
 	public TreeSet<Person> getCustomers() {
@@ -167,5 +167,5 @@ public class Bank {
 	public void setChecks(ArrayList<Check> checks) {
 		this.checks = checks;
 	}
-
+	
 }

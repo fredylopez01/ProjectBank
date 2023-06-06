@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 import co.edu.uptc.model.Bank;
+import co.edu.uptc.model.BankingTransaction;
 import co.edu.uptc.model.Check;
 import co.edu.uptc.model.Current;
 import co.edu.uptc.model.Person;
@@ -66,13 +67,19 @@ public class Presenter {
 					showUsers();
 					break;
 				case 11:
+					unBlockCount();
+					break;
+				case 12:
+					showHisoryTransactions();
+					break;
+				case 13:
 					viewTest.showMessage("Ha sido un placer, vuelva pronto", "Salida", viewTest.getCorrect());
 					System.exit(0);
 				default:
 					viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
 			}
 		} 
-		while(option != 11);
+		while(option != 13);
 	}
 	
 
@@ -88,7 +95,7 @@ public class Presenter {
 	public int optionMenu() {
 		return viewTest.readInt(LocalDate.now() + "\nBienvenido a su Banco de confianza\n\n1. Crear Usuario \n2. Cambiar contraseña \n3. Bloquear cuenta"
 				+ "\n4. Consultar saldo \n5. Consignar \n6. Retirar \n7. Transferir a otros usuarios \n8. Liquidar intereses \n9. Ver información de cuentas"
-				+ "\n10. Mostrar lista de usuarios \n11. Salir \n\nDigite Opción", "Página Principal-Menú", viewTest.getBankIcon());
+				+ "\n10. Mostrar lista de usuarios \n11. Desbloquesar cuenta \n12. Historial de una cuenta \n13. Salir \n\nDigite Opción", "Página Principal-Menú", viewTest.getBankIcon());
 	}
 	
 	public void creation() {
@@ -182,6 +189,24 @@ public class Presenter {
 		}
 	}
 	
+	public void unBlockCount() {
+		Check check = bankTest.searchCheck(viewTest.readInt("Ingrese el número de la cuenta", "Desbloquear Cuenta", viewTest.getBlockCheck()));
+		if(check != null) {
+			if(bankTest.verifyPassword(check, viewTest.readString("Ingrese la contraseña para poder realizar la acción", "Pregunta", viewTest.getSignQuestion()))) {
+				if(check.isBlocked()) {
+					check.setBlocked(false);
+					viewTest.showMessage("Cuenta desbloqueada correctamente", "Correcto", viewTest.getCorrect());
+				} else {
+					viewTest.showMessage("La cuenta ya esta desbloqueada", "Correcto", viewTest.getCorrect());
+				}
+			} else {
+				viewTest.showMessage("Contraseña incorrecta", "Error", viewTest.getIncorrect());
+			}
+		} else {
+			viewTest.showMessage("Cuenta no existente", "Error", viewTest.getIncorrect());
+		}
+	}
+	
 	public void consultRemmant() {
 		Check check = bankTest.searchCheck(viewTest.readInt("Ingrese el número de la cuenta", "Consultar Saldo", viewTest.getConsultRemmant()));
 		if(check != null) {
@@ -194,15 +219,16 @@ public class Presenter {
 	public void consign() {
 		Check check = bankTest.searchCheck(viewTest.readInt("¿Número de cuenta destino?", "Consignar", viewTest.getConsign()));
 		if(check != null) {
-			try {
-				double amount = Double.parseDouble(viewTest.readString("¿Cuánto quiere  consignar?", "Cuanto", viewTest.getSignDollar()));
-				bankTest.consign(check, amount);
-				viewTest.showMessage("Acción exitosa", "Correcto", viewTest.getCorrect());
-				if(check.isBlocked()) {
-					check.setBlocked(false);
+			if(!check.isBlocked()) {
+				try {
+					double amount = Double.parseDouble(viewTest.readString("¿Cuánto quiere  consignar?", "Cuanto", viewTest.getSignDollar()));
+					bankTest.consign(check, amount, LocalDate.now());
+					viewTest.showMessage("Acción exitosa", "Correcto", viewTest.getCorrect());
+				} catch(ExceptionAmountCero e) {
+					viewTest.showMessage(e.getMessage(), "Excepción", viewTest.getIncorrect());
 				}
-			} catch(ExceptionAmountCero e) {
-				viewTest.showMessage(e.getMessage(), "Excepción", viewTest.getIncorrect());
+			} else {
+				viewTest.showMessage("Cuenta bloqueada", "Error", viewTest.getIncorrect());
 			}
 		} else {
 			viewTest.showMessage("Cuenta no existente", "Error", viewTest.getIncorrect());
@@ -220,9 +246,9 @@ public class Presenter {
 	public void withdrawProcess(Check check, double amount) {
 		try {
 			if(check instanceof Current) {
-				bankTest.withdrawCurrent((Current) check, amount);
+				bankTest.withdrawCurrent((Current) check, amount, LocalDate.now());
 			} else if(check instanceof Savings) {
-				bankTest.withdrawSavings((Savings) check, amount);
+				bankTest.withdrawSavings((Savings) check, amount, LocalDate.now());
 			}
 			viewTest.showMessage("Retiro existoso", "Correcto", viewTest.getCorrect());
 		} catch (ExceptionWithoutRemmant e) {
@@ -265,7 +291,7 @@ public class Presenter {
 	
 	public void transferProcess(Check check, double amount, Check checkTwo) {
 		try {
-			bankTest.transfer(check, amount, checkTwo);
+			bankTest.transfer(check, amount, checkTwo, LocalDate.now());
 			viewTest.showMessage("Tranferencia Exitosa", "Correcto", viewTest.getCorrect());
 		} catch (ExceptionWithoutRemmant e) {
 			viewTest.showMessage(e.getMessage(), "Excepción", viewTest.getIncorrect());
@@ -291,7 +317,7 @@ public class Presenter {
 	public String showCheck(Check check) {
 		StringBuilder message = new StringBuilder();
 		message.append("------Numero de cuenta: " + check.getNumber() + "------\nPropietario: " + check.getOwner().getName() + "\nIdentificación: " 
-					+ check.getOwner().getId() + "\nFrecha de creación: "+ check.getCreationDate() + "\nTipo de cuenta: ");
+					+ check.getOwner().getId() + "\nFecha de creación: "+ check.getCreationDate() + "\nTipo de cuenta: ");
 		if(check instanceof Current) {
 			Current checkCurrent = (Current)check;
 			message.append("Corriente \nDeuda: " + checkCurrent.calculateDebt());
@@ -310,4 +336,20 @@ public class Presenter {
 		viewTest.showMessage(message.toString(), "Usuarios", viewTest.getShowUsers());
 	}
 	
+	public void showHisoryTransactions() {
+		Check check = bankTest.searchCheck(viewTest.readInt("Ingrese el número de la cuenta", "Consultar Saldo", viewTest.getConsultRemmant()));
+		StringBuilder message = new StringBuilder("Fecha               Motivo     Cantidad\n");
+		if(check != null) {
+			if(check.getBankingTransactions().isEmpty()) {
+				message.replace(0, 39, "No se han registrado movimientos\nen esta cuenta hasta el momento");
+			} else {
+				for(BankingTransaction i: check.getBankingTransactions()) {
+					message.append(i.toString());
+				}
+			}
+			viewTest.showMessage(message.toString(), "Historial de Transacciónes", viewTest.getSignDollar());
+		} else {
+			viewTest.showMessage("Cuenta no existente", "Error", viewTest.getIncorrect());
+		}
+	}
 }

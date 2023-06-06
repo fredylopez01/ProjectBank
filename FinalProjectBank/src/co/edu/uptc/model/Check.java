@@ -1,6 +1,7 @@
 package co.edu.uptc.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Check {
 	private Person owner;
@@ -9,6 +10,7 @@ public class Check {
 	private String password;
 	private boolean isBlocked;
 	private LocalDate creationDate;
+	private ArrayList<BankingTransaction> bankingTransactions;
 	private static int firts = 123;
 	
 	public Check(Person owner, String password, LocalDate creationDate) {
@@ -17,6 +19,7 @@ public class Check {
 		firts += (int) (Math.random()*1000+1);
 		this.password = password;
 		this.creationDate = creationDate;
+		bankingTransactions = new ArrayList<BankingTransaction>();
 	}
 
 	public int getNumber() {
@@ -65,6 +68,14 @@ public class Check {
 
 	public void setOwner(Person owner) {
 		this.owner = owner;
+	}
+
+	public ArrayList<BankingTransaction> getBankingTransactions() {
+		return bankingTransactions;
+	}
+	
+	public void setBankingTransactions(ArrayList<BankingTransaction> bankingTransactions) {
+		this.bankingTransactions = bankingTransactions;
 	}
 	
 }

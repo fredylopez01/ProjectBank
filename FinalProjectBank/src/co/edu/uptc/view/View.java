@@ -5,7 +5,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class View {
+	private Icon mainIcon;
 	private Icon bankIcon;
+	private Icon managerIcon;
+	private Icon userIcon;
 	private Icon createUser;
 	private Icon changePassword;
 	private Icon blockCheck;
@@ -21,7 +24,10 @@ public class View {
 	
 	
 	public View() {
+		mainIcon = new ImageIcon(new ImageIcon(getClass().getResource("bank-01.jpg")).getImage().getScaledInstance(150, 130, 0));
 		bankIcon = new ImageIcon(new ImageIcon(getClass().getResource("bank.jpg")).getImage().getScaledInstance(300, 260, 0));
+		managerIcon = new ImageIcon(new ImageIcon(getClass().getResource("manager.png")).getImage().getScaledInstance(260, 260, 0));
+		userIcon = new ImageIcon(new ImageIcon(getClass().getResource("user.png")).getImage().getScaledInstance(150, 150, 0));
 		createUser = new ImageIcon(new ImageIcon(getClass().getResource("createUser.jpg")).getImage().getScaledInstance(80, 80, 0));
 		changePassword = new ImageIcon(new ImageIcon(getClass().getResource("changePassword.jpg")).getImage().getScaledInstance(60, 60, 0));
 		blockCheck = new ImageIcon(new ImageIcon(getClass().getResource("blockCheck.jpg")).getImage().getScaledInstance(60, 60, 0));
@@ -46,6 +52,14 @@ public class View {
 	
 	public void showMessage(String message, String title, Icon icon) {
 		JOptionPane.showMessageDialog(null, message, title, 0, icon);
+	}
+	
+	public Icon getMainIcon() {
+		return mainIcon;
+	}
+
+	public void setMainIcon(Icon mainIcon) {
+		this.mainIcon = mainIcon;
 	}
 
 	public Icon getBankIcon() {
@@ -150,6 +164,22 @@ public class View {
 
 	public void setSignQuestion(Icon signQuestion) {
 		this.signQuestion = signQuestion;
+	}
+
+	public Icon getManagerIcon() {
+		return managerIcon;
+	}
+
+	public void setManagerIcon(Icon managerIcon) {
+		this.managerIcon = managerIcon;
+	}
+
+	public Icon getUserIcon() {
+		return userIcon;
+	}
+
+	public void setUserIcon(Icon userIcon) {
+		this.userIcon = userIcon;
 	}
 	
 }

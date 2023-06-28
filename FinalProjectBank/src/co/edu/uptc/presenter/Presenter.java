@@ -25,8 +25,7 @@ public class Presenter {
 	private View viewTest;
 	
 	public Presenter() {
-		bankTest = new Bank("123");
-		load();
+		bankTest = loadDates();
 		viewTest = new View();
 	}
 	
@@ -93,15 +92,6 @@ public class Presenter {
 			viewTest.showMessage("Contraseña incorrecta", "Error", viewTest.getIncorrect());
 		}
 	}
-
-	public void load() {
-		Person person = new Person("Camilo", 1054);
-		Current currentCheck = new Current(person, "a123", LocalDate.of(2020, 2, 4), 50000);
-		Savings savingsCheck = new Savings(person, "b123", LocalDate.of(2023, 1, 1));
-		bankTest.checkIn(person);
-		bankTest.addCheck(currentCheck);
-		bankTest.addCheck(savingsCheck);
-	}
 	
 	public void saveDates() {
 		try {
@@ -114,7 +104,18 @@ public class Presenter {
 		}
 	}
 	
-	
+	public Bank loadDates() {
+		try {
+			ObjectInputStream recuperarFichero = new ObjectInputStream(new FileInputStream("dates.dat"));
+			
+			Bank bank = (Bank) recuperarFichero.readObject();
+			recuperarFichero.close();
+			return bank;
+		} catch (IOException | ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
 	
 	public int optionManager() {
 		return viewTest.readInt(LocalDate.now() + "\nBienvenido \n\n1. Cambiar contraseña \n2. Bloquear cuenta "

@@ -95,18 +95,18 @@ public class Presenter {
 	
 	public void saveDates() {
 		try {
-			ObjectOutputStream escribirFichero = new ObjectOutputStream(new FileOutputStream("dates.dat"));
+			ObjectOutputStream escribirFichero = new ObjectOutputStream(new FileOutputStream("src\\co\\edu\\uptc\\model\\dates.dat"));
 			escribirFichero.writeObject(bankTest);
 			viewTest.showMessage("Información correctamente guardada", "Cerrando sesión", viewTest.getCorrect());
 			escribirFichero.close();
 		} catch(IOException e) {
-			System.out.println(e.getMessage());
+			viewTest.showMessage(e.getMessage(), "Cerrando sesion", viewTest.getIncorrect());
 		}
 	}
 	
 	public Bank loadDates() {
 		try {
-			ObjectInputStream recuperarFichero = new ObjectInputStream(new FileInputStream("dates.dat"));
+			ObjectInputStream recuperarFichero = new ObjectInputStream(new FileInputStream("src\\co\\edu\\uptc\\model\\dates.dat"));
 			
 			Bank bank = (Bank) recuperarFichero.readObject();
 			recuperarFichero.close();
@@ -472,43 +472,39 @@ public class Presenter {
 		Person person = bankTest.searchPerson(viewTest.readInt("Ingrese la identificación del usuario", "Pregunta", viewTest.getSignQuestion()));;
 		if(person != null) {
 			Check check = null;
-			try {
-				if(option == 1) {
-						check = createCurrent(person);
-				} else if(option == 2) {
-					check = createSavings(person);
-				}
-				bankTest.addCheck(check);
-				viewTest.showMessage("Cuenta creada correctamente\n" + showCheck(check), "Correcto", viewTest.getCorrect());
-			} catch (ExceptionBadFormatDate e) {
-				viewTest.showMessage(e.getMessage(), "Excepción", viewTest.getIncorrect());
+			if(option == 1) {
+					check = createCurrent(person);
+			} else if(option == 2) {
+				check = createSavings(person);
 			}
+			bankTest.addCheck(check);
+			viewTest.showMessage("Cuenta creada correctamente\n" + showCheck(check), "Correcto", viewTest.getCorrect());
 		} else {
 			viewTest.showMessage("Persona no registrada", "Error", viewTest.getIncorrect());
 		}
 	}
 	
-	public Current createCurrent(Person owner) throws ExceptionBadFormatDate {
+	public Current createCurrent(Person owner) {
 		String password = viewTest.readString("Ingrese la contraseña", "Pregunta", viewTest.getSignQuestion());
 		double overdraf = Double.parseDouble(viewTest.readString("Ingrese el sobregiro que tendra esta cuenta", "Cuanto", viewTest.getSignDollar()));
-		return new Current(owner, password, registerDate(), overdraf);
+		return new Current(owner, password, LocalDate.now(), overdraf);
 	}
 	
-	public Savings createSavings(Person owner) throws ExceptionBadFormatDate {
+	public Savings createSavings(Person owner) {
 		String password = viewTest.readString("Ingrese la contraseña", "Pregunta", viewTest.getSignQuestion());
-		return new Savings(owner, password, registerDate());
+		return new Savings(owner, password, LocalDate.now());
 	}
 	
-	public LocalDate registerDate() throws ExceptionBadFormatDate {
-		String regExp = "(0[1-9]|[12][0-9]|3[01])(/|-)(0[1-9]|1[0-2])(/|-)(\\d{4})";
-		LocalDate dateFinal = null; 
-		String date = viewTest.readString("Fecha de creación con formato: dd/mm/aaaa", "Pregunta", viewTest.getSignQuestion());
-		if(Pattern.matches(regExp, date)) {
-			String[] dateParts = date.split("/|-");
-			dateFinal = LocalDate.of(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
-		} else {
-			throw new ExceptionBadFormatDate();
-		}
-		return dateFinal;
-	}
+//	public LocalDate registerDate() throws ExceptionBadFormatDate {
+//		String regExp = "(0[1-9]|[12][0-9]|3[01])(/|-)(0[1-9]|1[0-2])(/|-)(\\d{4})";
+//		LocalDate dateFinal = null; 
+//		String date = viewTest.readString("Fecha de creación con formato: dd/mm/aaaa", "Pregunta", viewTest.getSignQuestion());
+//		if(Pattern.matches(regExp, date)) {
+//			String[] dateParts = date.split("/|-");
+//			dateFinal = LocalDate.of(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
+//		} else {
+//			throw new ExceptionBadFormatDate();
+//		}
+//		return dateFinal;
+//	}
 }

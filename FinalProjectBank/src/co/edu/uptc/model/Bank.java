@@ -1,5 +1,6 @@
 package co.edu.uptc.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -8,7 +9,7 @@ import co.edu.uptc.model.exceptions.ExceptionAmountCero;
 import co.edu.uptc.model.exceptions.ExceptionSamePassword;
 import co.edu.uptc.model.exceptions.ExceptionWithoutRemmant;
 
-public class Bank {
+public class Bank implements Serializable {
 	private String password;
 	private TreeSet<Person> customers;
 	private ArrayList<Check> checks;

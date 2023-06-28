@@ -1,5 +1,10 @@
 package co.edu.uptc.presenter;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
@@ -21,6 +26,7 @@ public class Presenter {
 	
 	public Presenter() {
 		bankTest = new Bank("123");
+		load();
 		viewTest = new View();
 	}
 	
@@ -41,6 +47,7 @@ public class Presenter {
 				user();
 				break;
 			case 3:
+				saveDates();
 				viewTest.showMessage("Ha sido un placer. Vuelva pronto.", "Salida", viewTest.getCorrect());
 				System.exit(0);
 			default:
@@ -51,7 +58,6 @@ public class Presenter {
 	
 	public void manager() {
 		if(viewTest.readString("Ingrese la contraseña", "Login-Administrador", viewTest.getChangePassword()).equals(bankTest.getPassword())) {
-			load();
 			int option = 0;
 			do {
 				bankTest.blockSavingsChecks();
@@ -96,6 +102,19 @@ public class Presenter {
 		bankTest.addCheck(currentCheck);
 		bankTest.addCheck(savingsCheck);
 	}
+	
+	public void saveDates() {
+		try {
+			ObjectOutputStream escribirFichero = new ObjectOutputStream(new FileOutputStream("dates.dat"));
+			escribirFichero.writeObject(bankTest);
+			viewTest.showMessage("Información correctamente guardada", "Cerrando sesión", viewTest.getCorrect());
+			escribirFichero.close();
+		} catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
 	
 	public int optionManager() {
 		return viewTest.readInt(LocalDate.now() + "\nBienvenido \n\n1. Cambiar contraseña \n2. Bloquear cuenta "
@@ -189,7 +208,6 @@ public class Presenter {
 	}
 	
 	public void user() {
-		load();
 		int option = 0;
 		do {
 			bankTest.blockSavingsChecks();
@@ -216,7 +234,6 @@ public class Presenter {
 	}
 	
 	public void check() {
-		load();
 		Check check = bankTest.searchCheck(viewTest.readInt("¿Número de la cuenta?", "Ingresar", viewTest.getChangePassword()));
 		if(verifyCheck(check)) {
 			menuUser(check);
@@ -383,7 +400,7 @@ public class Presenter {
 			if(checkTwo != null) {
 				double amount = Double.parseDouble(viewTest.readString("¿Cuánto quiere  transferir?", "Cuánto", viewTest.getSignDollar()));
 				transferProcess(check, amount, checkTwo);
-			}else {
+			} else {
 				viewTest.showMessage("Cuenta no existente", "Error", viewTest.getIncorrect());
 			}
 		}

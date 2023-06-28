@@ -1,9 +1,10 @@
 package co.edu.uptc.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Check {
+public class Check implements Serializable {
 	private Person owner;
 	private int number;
 	private double remmant;

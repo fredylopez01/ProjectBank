@@ -26,8 +26,19 @@ public class Presenter {
 	
 	public Presenter() {
 		bankTest = loadDates();
+//		bankTest = new Bank("123");
+//		load();
 		viewTest = new View();
 	}
+	
+//	public void load() {
+//		Person person = new Person("Camilo", 1054);
+//		bankTest.checkIn(person);
+//		Current current = new Current(person, "a123", LocalDate.of(2023, 01, 01), 10000);
+//		Savings savings = new Savings(person, "b123", LocalDate.of(2023, 3, 27));
+//		bankTest.addCheck(current);
+//		bankTest.addCheck(savings);
+//	}
 	
 	public static void main (String [] args) {
 		Presenter presenterTest = new Presenter();	

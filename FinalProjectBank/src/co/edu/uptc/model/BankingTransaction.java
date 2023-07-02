@@ -1,8 +1,9 @@
 package co.edu.uptc.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class BankingTransaction {
+public class BankingTransaction implements Serializable {
 	private LocalDate date;
 	private double amount;
 	private String type;

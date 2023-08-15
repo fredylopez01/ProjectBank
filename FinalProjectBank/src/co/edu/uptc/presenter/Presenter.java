@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.regex.Pattern;
 
 import co.edu.uptc.model.Bank;
@@ -25,20 +26,20 @@ public class Presenter {
 	private View viewTest;
 	
 	public Presenter() {
-		bankTest = loadDates();
 //		bankTest = new Bank("123");
+		bankTest = loadDates();
 //		load();
 		viewTest = new View();
 	}
 	
-//	public void load() {
-//		Person person = new Person("Camilo", 1054);
-//		bankTest.checkIn(person);
-//		Current current = new Current(person, "a123", LocalDate.of(2023, 01, 01), 10000);
-//		Savings savings = new Savings(person, "b123", LocalDate.of(2023, 3, 27));
-//		bankTest.addCheck(current);
-//		bankTest.addCheck(savings);
-//	}
+	public void load() {
+		Person person = new Person("Camilo", 1054);
+		bankTest.checkIn(person);
+		Current current = new Current(123, person, "a123", LocalDate.of(2023, 01, 01), 10000);
+		Savings savings = new Savings(543,person, "b123", LocalDate.of(2023, 3, 27));
+		bankTest.addCheck(current);
+		bankTest.addCheck(savings);
+	}
 	
 	public static void main (String [] args) {
 		Presenter presenterTest = new Presenter();	
@@ -498,12 +499,12 @@ public class Presenter {
 	public Current createCurrent(Person owner) {
 		String password = viewTest.readString("Ingrese la contraseña", "Pregunta", viewTest.getSignQuestion());
 		double overdraf = Double.parseDouble(viewTest.readString("Ingrese el sobregiro que tendra esta cuenta", "Cuanto", viewTest.getSignDollar()));
-		return new Current(owner, password, LocalDate.now(), overdraf);
+		return new Current(bankTest.getChecks().get((bankTest.getChecks().size()-1)).getNumber(), owner, password, LocalDate.now(), overdraf);
 	}
 	
 	public Savings createSavings(Person owner) {
 		String password = viewTest.readString("Ingrese la contraseña", "Pregunta", viewTest.getSignQuestion());
-		return new Savings(owner, password, LocalDate.now());
+		return new Savings(bankTest.getChecks().get((bankTest.getChecks().size()-1)).getNumber(),owner, password, LocalDate.now());
 	}
 	
 //	public LocalDate registerDate() throws ExceptionBadFormatDate {

@@ -6,8 +6,8 @@ public class Current extends Check {
 	private double overdraf;
 	private double debt;
 	
-	public Current(Person owner, String password, LocalDate creationDate, double overdraf) {
-		super(owner, password, creationDate);
+	public Current(int number, Person owner, String password, LocalDate creationDate, double overdraf) {
+		super(number, owner, password, creationDate);
 		this.overdraf = overdraf;
 	}
 	

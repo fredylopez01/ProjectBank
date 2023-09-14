@@ -17,26 +17,18 @@ import co.edu.uptc.model.Savings;
 import co.edu.uptc.model.exceptions.ExceptionAmountCero;
 import co.edu.uptc.model.exceptions.ExceptionSamePassword;
 import co.edu.uptc.model.exceptions.ExceptionWithoutRemmant;
+import co.edu.uptc.persistence.Persistence;
 import co.edu.uptc.view.View;
 
 public class Presenter {
 	private Bank bankTest;
 	private View viewTest;
+	private Persistence persistenceTest;
 	
 	public Presenter() {
-//		bankTest = new Bank("123");
-		bankTest = loadDates();
-//		load();
+		persistenceTest = new Persistence("data/dates.dat");
+		bankTest = persistenceTest.loadDates();
 		viewTest = new View();
-	}
-	
-	public void load() {
-		Person person = new Person("Camilo", 1054);
-		bankTest.checkIn(person);
-		Current current = new Current(123, person, "a123", LocalDate.of(2023, 01, 01), 10000);
-		Savings savings = new Savings(543,person, "b123", LocalDate.of(2023, 3, 27));
-		bankTest.addCheck(current);
-		bankTest.addCheck(savings);
 	}
 	
 	public static void main (String [] args) {
@@ -82,28 +74,12 @@ public class Presenter {
 	
 	public void saveDates() {
 		try {
-			ObjectOutputStream escribirFichero = new ObjectOutputStream(new FileOutputStream("src\\co\\edu\\uptc\\model\\dates.dat"));
-			escribirFichero.writeObject(bankTest);
-			viewTest.showMessage("Información correctamente guardada", "Cerrando sesión", viewTest.getCorrect());
-			escribirFichero.close();
+			persistenceTest.saveDates(bankTest);
 		} catch(IOException e) {
 			viewTest.showMessage(e.getMessage(), "Cerrando sesion", viewTest.getIncorrect());
 		}
 		viewTest.showMessage("Ha sido un placer. Vuelva pronto.", "Salida", viewTest.getCorrect());
 		System.exit(0);
-	}
-	
-	public Bank loadDates() {
-		try {
-			ObjectInputStream recuperarFichero = new ObjectInputStream(new FileInputStream("src\\co\\edu\\uptc\\model\\dates.dat"));
-			
-			Bank bank = (Bank) recuperarFichero.readObject();
-			recuperarFichero.close();
-			return bank;
-		} catch (IOException | ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		return null;
 	}
 	
 	public int optionManager() {

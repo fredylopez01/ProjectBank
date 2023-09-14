@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.regex.Pattern;
 
 import co.edu.uptc.model.Bank;
@@ -16,7 +15,6 @@ import co.edu.uptc.model.Current;
 import co.edu.uptc.model.Person;
 import co.edu.uptc.model.Savings;
 import co.edu.uptc.model.exceptions.ExceptionAmountCero;
-import co.edu.uptc.model.exceptions.ExceptionBadFormatDate;
 import co.edu.uptc.model.exceptions.ExceptionSamePassword;
 import co.edu.uptc.model.exceptions.ExceptionWithoutRemmant;
 import co.edu.uptc.view.View;
@@ -51,18 +49,10 @@ public class Presenter {
 		do {
 			option = viewTest.readInt(LocalDate.now() + "\n\nEntrar como: \n1. Administrador \n2. Usuario \n3. Salir", "Panel-Princpal", viewTest.getMainIcon());
 			switch(option) {
-			case 1:
-				manager();
-				break;
-			case 2:
-				user();
-				break;
-			case 3:
-				saveDates();
-				viewTest.showMessage("Ha sido un placer. Vuelva pronto.", "Salida", viewTest.getCorrect());
-				System.exit(0);
-			default:
-				viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
+			case 1 -> manager();
+			case 2 -> user();
+			case 3 -> saveDates();
+			default -> viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
 			}
 		} while(option != 3);
 	}
@@ -74,29 +64,14 @@ public class Presenter {
 				bankTest.blockSavingsChecks();
 				option = optionManager();
 				switch(option) {
-					case 1:
-						changePasswordManager();
-						break;
-					case 2:
-						blockCountManager();
-						break;
-					case 3:
-						unBlockCountManager();
-						break;
-					case 4:
-						liquidateInterest();
-						break;
-					case 5:
-						showChecks();
-						break;
-					case 6:
-						showUsers();
-						break;
-					case 7:
-						viewTest.showMessage("Ha sido un placer, vuelva pronto", "Salida", viewTest.getCorrect());
-						break;
-					default:
-						viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
+					case 1 -> changePasswordManager();
+					case 2 -> blockCountManager();
+					case 3 -> unBlockCountManager();
+					case 4 -> liquidateInterest();
+					case 5 -> showChecks();
+					case 6 -> showUsers();
+					case 7 -> viewTest.showMessage("Ha sido un placer, vuelva pronto", "Salida", viewTest.getCorrect());
+					default -> viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
 				}
 			} 
 			while(option != 7);
@@ -114,6 +89,8 @@ public class Presenter {
 		} catch(IOException e) {
 			viewTest.showMessage(e.getMessage(), "Cerrando sesion", viewTest.getIncorrect());
 		}
+		viewTest.showMessage("Ha sido un placer. Vuelva pronto.", "Salida", viewTest.getCorrect());
+		System.exit(0);
 	}
 	
 	public Bank loadDates() {
@@ -227,20 +204,11 @@ public class Presenter {
 			option = viewTest.readInt(LocalDate.now() + "\nBienevenido a su Banco de confianza \n\n1. Ingresar \n2. Registrarse \n3. Crear cuenta "
 					+ "\n4. Salir", "Panel-Usuario", viewTest.getUserIcon());
 			switch(option) {
-				case 1:
-					check();
-					break;
-				case 2:
-					checkIn();
-					break;
-				case 3:
-					creation();
-					break;
-				case 4:
-					viewTest.showMessage("Ha sido un placer, vuelva pronto", "Salida", viewTest.getCorrect());
-					break;
-				default:
-					viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
+				case 1 ->check();
+				case 2 -> checkIn();
+				case 3 -> creation();
+				case 4 -> viewTest.showMessage("Ha sido un placer, vuelva pronto", "Salida", viewTest.getCorrect());
+				default ->viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
 			}
 		} 
 		while(option != 4);
@@ -260,35 +228,16 @@ public class Presenter {
 			bankTest.blockSavingsChecks();
 			option = optionUser();
 			switch(option) {
-				case 1:
-					changePassword(check);
-					break;
-				case 2:
-					blockCount(check);
-					break;
-				case 3:
-					unBlockCount(check);
-					break;
-				case 4:
-					consultRemmant(check);
-					break;
-				case 5:
-					consign();
-					break;
-				case 6:
-					withdraw(check);
-					break;
-				case 7:
-					transfer(check);
-					break;
-				case 8:
-					showHisoryTransactions(check);
-					break;
-				case 9:
-					viewTest.showMessage("Ha sido un placer, vuelva pronto", "Salida", viewTest.getCorrect());
-					break;
-				default:
-					viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
+				case 1 -> changePassword(check);
+				case 2 -> blockCount(check);
+				case 3 -> unBlockCount(check);
+				case 4 -> consultRemmant(check);
+				case 5 -> consign();
+				case 6 -> withdraw(check);
+				case 7 -> transfer(check);
+				case 8 -> showHisoryTransactions(check);
+				case 9 -> viewTest.showMessage("Ha sido un placer, vuelva pronto", "Salida", viewTest.getCorrect());
+				default -> viewTest.showMessage("Opción invalida", "Error", viewTest.getIncorrect());
 			}
 		} 
 		while(option != 9);

@@ -17,15 +17,22 @@ public class Persistence {
 	}
 	
 	public Bank loadDates() {
+		Bank bank = null;
 		try {
 			ObjectInputStream recuperarFichero = new ObjectInputStream(new FileInputStream(route));
-			Bank bank = (Bank) recuperarFichero.readObject();
+			bank = (Bank) recuperarFichero.readObject();
 			recuperarFichero.close();
 			return bank;
 		} catch (IOException | ClassNotFoundException e) {
 			System.out.println(e.getMessage());
+			bank = loadB();
 		}
-		return null;
+		return bank;
+	}
+
+	public Bank loadB(){
+		Bank bank = new Bank("123");
+		return bank;
 	}
 	
 	public void saveDates(Bank bankTest) throws FileNotFoundException, IOException {

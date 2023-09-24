@@ -6,8 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 
 import co.edu.uptc.model.Bank;
+import co.edu.uptc.model.Current;
+import co.edu.uptc.model.Person;
 
 public class Persistence {
 	private String route;
@@ -32,6 +35,9 @@ public class Persistence {
 
 	public Bank loadB(){
 		Bank bank = new Bank("123");
+		Person person = new Person("Camilo", 1055);
+		bank.checkIn(person);
+		bank.addCheck(new Current(1, person, "a123", LocalDate.of(2023, 3, 27), 10000));
 		return bank;
 	}
 	

@@ -24,22 +24,22 @@ public class View {
 	
 	
 	public View() {
-		mainIcon = new ImageIcon(new ImageIcon(getClass().getResource("bank-01.jpg")).getImage().getScaledInstance(150, 130, 0));
-		bankIcon = new ImageIcon(new ImageIcon(getClass().getResource("bank.jpg")).getImage().getScaledInstance(300, 260, 0));
-		managerIcon = new ImageIcon(new ImageIcon(getClass().getResource("manager.png")).getImage().getScaledInstance(260, 260, 0));
-		userIcon = new ImageIcon(new ImageIcon(getClass().getResource("user.png")).getImage().getScaledInstance(150, 150, 0));
-		createUser = new ImageIcon(new ImageIcon(getClass().getResource("createUser.jpg")).getImage().getScaledInstance(80, 80, 0));
-		changePassword = new ImageIcon(new ImageIcon(getClass().getResource("changePassword.jpg")).getImage().getScaledInstance(60, 60, 0));
-		blockCheck = new ImageIcon(new ImageIcon(getClass().getResource("blockCheck.jpg")).getImage().getScaledInstance(60, 60, 0));
-		consultRemmant = new ImageIcon(new ImageIcon(getClass().getResource("consultRemmants.jpg")).getImage().getScaledInstance(60, 60, 0));
-		withdraw = new ImageIcon(new ImageIcon(getClass().getResource("withdraw.jpg")).getImage().getScaledInstance(60, 60, 0));
-		consign = new ImageIcon(new ImageIcon(getClass().getResource("consig.jpg")).getImage().getScaledInstance(60, 60, 0));
-		transfer = new ImageIcon(new ImageIcon(getClass().getResource("transfer.jpg")).getImage().getScaledInstance(60, 60, 0));
-		showUsers = new ImageIcon(new ImageIcon(getClass().getResource("showUsers.jpg")).getImage().getScaledInstance(80, 80, 0));
-		correct = new ImageIcon(new ImageIcon(getClass().getResource("correct.jpg")).getImage().getScaledInstance(40, 40, 0));
-		incorrect = new ImageIcon(new ImageIcon(getClass().getResource("incorrect.jpg")).getImage().getScaledInstance(40, 40, 0));
-		signDollar = new ImageIcon(new ImageIcon(getClass().getResource("signDollar.jpg")).getImage().getScaledInstance(40, 40, 0));
-		signQuestion = new ImageIcon(new ImageIcon(getClass().getResource("questionSign.jpg")).getImage().getScaledInstance(40, 40, 0));
+		mainIcon = new ImageIcon(new ImageIcon(getClass().getResource("images/bank-01.jpg")).getImage().getScaledInstance(150, 130, 0));
+		bankIcon = new ImageIcon(new ImageIcon(getClass().getResource("images/bank.jpg")).getImage().getScaledInstance(300, 260, 0));
+		managerIcon = new ImageIcon(new ImageIcon(getClass().getResource("images/manager.png")).getImage().getScaledInstance(260, 260, 0));
+		userIcon = new ImageIcon(new ImageIcon(getClass().getResource("images/user.png")).getImage().getScaledInstance(150, 150, 0));
+		createUser = new ImageIcon(new ImageIcon(getClass().getResource("images/createUser.jpg")).getImage().getScaledInstance(80, 80, 0));
+		changePassword = new ImageIcon(new ImageIcon(getClass().getResource("images/changePassword.jpg")).getImage().getScaledInstance(60, 60, 0));
+		blockCheck = new ImageIcon(new ImageIcon(getClass().getResource("images/blockCheck.jpg")).getImage().getScaledInstance(60, 60, 0));
+		consultRemmant = new ImageIcon(new ImageIcon(getClass().getResource("images/consultRemmants.jpg")).getImage().getScaledInstance(60, 60, 0));
+		withdraw = new ImageIcon(new ImageIcon(getClass().getResource("images/withdraw.jpg")).getImage().getScaledInstance(60, 60, 0));
+		consign = new ImageIcon(new ImageIcon(getClass().getResource("images/consig.jpg")).getImage().getScaledInstance(60, 60, 0));
+		transfer = new ImageIcon(new ImageIcon(getClass().getResource("images/transfer.jpg")).getImage().getScaledInstance(60, 60, 0));
+		showUsers = new ImageIcon(new ImageIcon(getClass().getResource("images/showUsers.jpg")).getImage().getScaledInstance(80, 80, 0));
+		correct = new ImageIcon(new ImageIcon(getClass().getResource("images/correct.jpg")).getImage().getScaledInstance(40, 40, 0));
+		incorrect = new ImageIcon(new ImageIcon(getClass().getResource("images/incorrect.jpg")).getImage().getScaledInstance(40, 40, 0));
+		signDollar = new ImageIcon(new ImageIcon(getClass().getResource("images/signDollar.jpg")).getImage().getScaledInstance(40, 40, 0));
+		signQuestion = new ImageIcon(new ImageIcon(getClass().getResource("images/questionSign.jpg")).getImage().getScaledInstance(40, 40, 0));
 	}
 	
 	public int readInt(String message,  String title, Icon icon) {

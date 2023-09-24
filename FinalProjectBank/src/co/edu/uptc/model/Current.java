@@ -3,6 +3,7 @@ package co.edu.uptc.model;
 import java.time.LocalDate;
 
 public class Current extends Check {
+	private static final long serialVersionUID = 1L;
 	private double overdraf;
 	private double debt;
 	

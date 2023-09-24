@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Savings extends Check {
+	private static final long serialVersionUID = 1L;
 	private double interest;
 	private static double miniumBalance;
 	private LocalDate interestDate;

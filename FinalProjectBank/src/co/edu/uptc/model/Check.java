@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Check implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Person owner;
 	private int number;
 	private double remmant;

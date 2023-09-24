@@ -10,6 +10,7 @@ import co.edu.uptc.model.exceptions.ExceptionSamePassword;
 import co.edu.uptc.model.exceptions.ExceptionWithoutRemmant;
 
 public class Bank implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String password;
 	private TreeSet<Person> customers;
 	private ArrayList<Check> checks;

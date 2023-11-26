@@ -332,8 +332,12 @@ public class Presenter {
 		if(verifyCheck(check)) {
 			Check checkTwo = bankTest.searchCheck(viewTest.readInt("¿Número de la cuenta destino?", "Consignar", viewTest.getConsign()));
 			if(checkTwo != null) {
-				double amount = Double.parseDouble(viewTest.readString("¿Cuánto quiere  transferir?", "Cuánto", viewTest.getSignDollar()));
-				transferProcess(check, amount, checkTwo);
+				if(checkTwo.getNumber() != check.getNumber()) {
+					double amount = Double.parseDouble(viewTest.readString("¿Cuánto quiere  transferir?", "Cuánto", viewTest.getSignDollar()));
+					transferProcess(check, amount, checkTwo);
+				} else {
+					viewTest.showMessage("No se puede transferir a sí mismo", "Error", viewTest.getIncorrect());
+				}
 			} else {
 				viewTest.showMessage("Cuenta no existente", "Error", viewTest.getIncorrect());
 			}

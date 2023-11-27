@@ -9,11 +9,11 @@ import javax.swing.JFrame;
 
 import co.edu.uptc.view.body.HeaderPanel;
 import co.edu.uptc.view.body.MenuManagerPanel;
+import co.edu.uptc.view.body.PanelBeginning;
 
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private HeaderPanel header;
-	private MenuManagerPanel menu;
+	private PanelBeginning begin;
 	
 	public static void main(String[] args) {
 		new MainView(new ActionListener() {
@@ -39,11 +39,7 @@ public class MainView extends JFrame {
 	
 	public void init(ActionListener listener) {
 		this.setLayout(new BorderLayout());
-		
-		header = new HeaderPanel(listener);
-		add(header, BorderLayout.NORTH);
-		
-		menu = new MenuManagerPanel(listener);
-		add(menu, BorderLayout.WEST);
+		begin = new PanelBeginning(listener);
+		add(begin, BorderLayout.CENTER);
 	}
 }

@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import co.edu.uptc.view.body.HeaderPanel;
+import co.edu.uptc.view.body.MenuManagerPanel;
+
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private Images img;
 	private HeaderPanel header;
-	private MenuPanel menu;
+	private MenuManagerPanel menu;
 	
 	public static void main(String[] args) {
 		new MainView(new ActionListener() {
@@ -27,7 +29,7 @@ public class MainView extends JFrame {
 	
 	public MainView(ActionListener listener) {
 		super("Banco de Confianza");
-		this.setSize(500, 300);
+		this.setSize(1000, 600);
 		init(listener);
 		this.setIconImage(new ImageIcon(getClass().getResource("images/bank-01.jpg")).getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,10 +38,12 @@ public class MainView extends JFrame {
 	}
 	
 	public void init(ActionListener listener) {
-		img = new Images();
 		this.setLayout(new BorderLayout());
 		
-		header = new HeaderPanel(listener,img.getMainIcon() );
+		header = new HeaderPanel(listener);
 		add(header, BorderLayout.NORTH);
+		
+		menu = new MenuManagerPanel(listener);
+		add(menu, BorderLayout.WEST);
 	}
 }

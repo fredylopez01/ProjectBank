@@ -1,4 +1,4 @@
-package co.edu.uptc.view;
+package co.edu.uptc.view.body;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -8,9 +8,11 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 	
 
 public class HeaderPanel extends JPanel {
@@ -22,12 +24,14 @@ public class HeaderPanel extends JPanel {
 	private JButton exit;
 	private JLabel date;
 	
-	public HeaderPanel(ActionListener listener,Icon img) {
-		init(listener, img);
+	public HeaderPanel(ActionListener listener) {
+		this.setBorder(new EmptyBorder(25, 30, 25, 30));
+		init(listener);
 		add();
 	}
 	
-	public void init(ActionListener listener,Icon img) {
+	public void init(ActionListener listener) {
+		Icon img = new ImageIcon(new ImageIcon(getClass().getResource("images/bank-01.jpg")).getImage().getScaledInstance(85, 75, 0));
 		logo = new JLabel(img);
 		
 		title = new JLabel("Banco de Confianza");
@@ -58,6 +62,7 @@ public class HeaderPanel extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(4, 4, 4, 4);
 		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.WEST;
 		add(logo, gbc);
 		
 		gbc.gridx = 2;

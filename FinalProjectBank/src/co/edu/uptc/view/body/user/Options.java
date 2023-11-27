@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import co.edu.uptc.view.Constants;
+
 public class Options extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton btnConsign;
@@ -17,6 +19,7 @@ public class Options extends JPanel {
 	private JButton btnBlockCount;
 	
 	public Options(ActionListener listener) {
+		setBackground(Constants.COLORBACKGROUNDPANEL);
 		initComponents(listener);
 		addComponents();
 	}
@@ -54,6 +57,6 @@ public class Options extends JPanel {
 		add(btnChangePassword, gbc);
 		
 		gbc.gridy = 5;
-		add(btnBlockCount);
+		add(btnBlockCount, gbc);
 	}
 }

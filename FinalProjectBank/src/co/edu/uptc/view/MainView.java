@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import co.edu.uptc.view.body.login.PanelContentBeginning;
+import co.edu.uptc.view.body.user.PanelUser;
 
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -39,6 +40,8 @@ public class MainView extends JFrame {
 		setLayout(new BorderLayout());
 		
 		contentBegin = new PanelContentBeginning(listener);
-		add(contentBegin, BorderLayout.CENTER);
+		
+		PanelUser panelUser = new PanelUser(listener);
+		add(panelUser, BorderLayout.CENTER);
 	}
 }

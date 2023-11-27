@@ -1,4 +1,4 @@
-package co.edu.uptc.view.body.user.header;
+package co.edu.uptc.view.body.user;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -33,23 +33,23 @@ public class ProfileInformation extends JPanel {
 		imgUser = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/changeAccount.png"));
 		img = new JLabel(imgUser);
 		
-		lblOwner = new JLabel("<html><body style=\"text-align: center\">Fredy Oswaldo<br> López Daza</body></html>");
-		lblOwner.setFont(Constants.FONTTITLEPANEL);
+		lblOwner = new JLabel("<html><body style=\"text-align: center\">FREDY OSWALDO<br> LÓPEZ DAZA</body></html>");
+		lblOwner.setFont(Constants.FONTNAMEUSER);
 		
 		lblIdentification = new JLabel("Identificación: ");
-		lblIdentification.setFont(Constants.FONTNORMAL);
+		lblIdentification.setFont(Constants.FONTDATESUSER);
 		
 		identification = new JLabel("1054708088");
-		identification.setFont(Constants.FONTNORMAL);
+		identification.setFont(Constants.FONTDATESUSER);
 		
 		lblNumberCheck = new JLabel("N. Cuenta: ");
-		lblNumberCheck.setFont(Constants.FONTNORMAL);
+		lblNumberCheck.setFont(Constants.FONTDATESUSER);
 		
 		numberCheck = new JLabel("123");
-		numberCheck.setFont(Constants.FONTNORMAL);
+		numberCheck.setFont(Constants.FONTDATESUSER);
 		
 		lblTypeAccount = new JLabel("Cuenta Corriente");
-		lblTypeAccount.setFont(Constants.FONTNORMAL);
+		lblTypeAccount.setFont(Constants.FONTDATESUSER);
 	}
 	
 	private void addComponents() {

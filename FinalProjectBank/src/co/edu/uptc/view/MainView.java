@@ -42,6 +42,6 @@ public class MainView extends JFrame {
 		contentBegin = new PanelContentBeginning(listener);
 		
 		PanelUser panelUser = new PanelUser(listener);
-		add(contentBegin, BorderLayout.CENTER);
+		add(panelUser, BorderLayout.CENTER);
 	}
 }

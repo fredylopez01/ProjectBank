@@ -27,6 +27,7 @@ public class PanelBeginning extends JPanel {
 	private JButton newCheck;
 	
 	public PanelBeginning(ActionListener listener) {
+		setUI(new ShapedPanelLoginUI(Constants.COLORPANELLOGIN));
 		setBackground(Constants.COLORBACKGROUNDPANELTWO);
 		initComponents(listener);
 	}

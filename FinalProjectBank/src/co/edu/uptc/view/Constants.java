@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 
 public class Constants {
+	public static final Color COLORPANELLOGIN = new Color(132, 250, 176, 180);
 	public static final Color COLORBACKGROUNDHEADER = new Color(0x230443);
 	public static final Color COLORFONTHEADER = new Color(0xffffff);
 	public static final Color GRAY = new Color(0x7d7e7c);
@@ -18,4 +19,8 @@ public class Constants {
 	public static final Font FONTNORESULTS = new Font("Consolas", Font.BOLD, 55);
 	public static final Font FONTNAV = new Font("Sans Serif", Font.PLAIN, 16);
 	public static final Cursor HANDCURSOR = new Cursor(Cursor.HAND_CURSOR);
+	public static final Font FONTNAMEUSER = new Font(Font.SANS_SERIF, Font.BOLD, 15);
+	public static final Font FONTDATESUSER = new Font("Sans Serif", Font.PLAIN, 13);
+	
+	
 }

@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import co.edu.uptc.view.body.PanelContentBeginning;
+import co.edu.uptc.view.body.login.PanelContentBeginning;
 
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 1L;

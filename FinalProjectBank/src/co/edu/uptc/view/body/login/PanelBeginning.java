@@ -1,4 +1,4 @@
-package co.edu.uptc.view.body;
+package co.edu.uptc.view.body.login;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -13,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import co.edu.uptc.view.Constants;
+import co.edu.uptc.view.body.ShapedButtonProfile;
 
 public class PanelBeginning extends JPanel {
 	private static final long serialVersionUID = 1L;

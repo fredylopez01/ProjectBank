@@ -1,4 +1,4 @@
-package co.edu.uptc.view.body;
+package co.edu.uptc.view.body.login;
 
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;

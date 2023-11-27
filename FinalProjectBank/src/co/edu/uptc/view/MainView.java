@@ -7,13 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import co.edu.uptc.view.body.HeaderPanel;
-import co.edu.uptc.view.body.MenuManagerPanel;
-import co.edu.uptc.view.body.PanelBeginning;
+import co.edu.uptc.view.body.PanelContentBeginning;
 
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private PanelBeginning begin;
+	private PanelContentBeginning contentBegin;
 	
 	public static void main(String[] args) {
 		new MainView(new ActionListener() {
@@ -31,15 +29,16 @@ public class MainView extends JFrame {
 		super("Banco de Confianza");
 		this.setSize(1000, 600);
 		init(listener);
-		this.setIconImage(new ImageIcon(getClass().getResource("images/bank-01.jpg")).getImage());
+		this.setIconImage(new ImageIcon(getClass().getResource("images/bank-02.jpg")).getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 	
 	public void init(ActionListener listener) {
-		this.setLayout(new BorderLayout());
-		begin = new PanelBeginning(listener);
-		add(begin, BorderLayout.CENTER);
+		setLayout(new BorderLayout());
+		
+		contentBegin = new PanelContentBeginning(listener);
+		add(contentBegin, BorderLayout.CENTER);
 	}
 }

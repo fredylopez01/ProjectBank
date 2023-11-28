@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import co.edu.uptc.view.body.user.funtions.PanelWithdraw;
+import co.edu.uptc.view.body.user.plusCenter.Balance;
 
 public class PanelCenterUser extends JPanel {
 	private static final long serialVersionUID = 1L;

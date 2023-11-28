@@ -1,4 +1,4 @@
-package co.edu.uptc.view.body.user;
+package co.edu.uptc.view.body.user.plusCenter;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;

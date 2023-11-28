@@ -5,11 +5,13 @@ import java.awt.Cursor;
 import java.awt.Font;
 
 public class Constants {
+	public static final Color YELLOWPANEL = new Color(232, 241, 61, 200);
+	public static final Color GRAYPANEL = new Color(154, 155, 135, 180);
+	public static final Color GRAY = new Color(144, 145, 128);
 	public static final Color COLORPANELLOGIN = new Color(132, 250, 176, 180);
 	public static final Color COLORPANELFUNTION = new Color(85, 221, 255, 180);
 	public static final Color COLORBACKGROUNDHEADER = new Color(0x230443);
 	public static final Color COLORFONTHEADER = new Color(0xffffff);
-	public static final Color GRAY = new Color(0x7d7e7c);
 	public static final Color COLORBACKGROUNDPANEL = new Color(0x55ddff);
 	public static final Color COLORBACKGROUNDPANELTWO = new Color(0x84fab0);
 	public static final Color COLORBACKGROUNDPANELTHREE = new Color(0xb3f0ff);

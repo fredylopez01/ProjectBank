@@ -1,4 +1,4 @@
-package co.edu.uptc.view.body.user;
+package co.edu.uptc.view.body.user.lateral;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

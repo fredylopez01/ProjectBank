@@ -17,6 +17,7 @@ import co.edu.uptc.view.body.login.ShapedPanelLoginUI;
 
 public class PanelWithdraw extends JPanel {
 	private static final long serialVersionUID = 1L;
+	private JLabel lblTitlePanel;
 	private JLabel lblPassword;
 	private JPasswordField passwordWithdraw;
 	private JLabel lblAmount;
@@ -30,6 +31,9 @@ public class PanelWithdraw extends JPanel {
 	}
 
 	private void initComponents(ActionListener listener) {
+		lblTitlePanel = new JLabel("Retirar");
+		lblTitlePanel.setFont(Constants.FONTTITLEPANEL);
+		
 		lblPassword = new JLabel("Contraseña");
 		lblPassword.setFont(Constants.FONTNORMAL);
 		
@@ -52,22 +56,26 @@ public class PanelWithdraw extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.insets = new Insets(95,  0,  2,  0);
+		add(lblTitlePanel, gbc);
+		
+		gbc.gridy = 1;
+		gbc.insets = new Insets(45,  0,  2,  0);
 		add(lblPassword, gbc);
 
 		gbc.insets = new Insets(2,  35,  25,  35);
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		add(passwordWithdraw, gbc);
 
 		gbc.insets = new Insets(2,  0,  2,  0);
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		add(lblAmount, gbc);
 
 		gbc.insets = new Insets(2,  35,  15,  35);
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.gridy= 3;
+		gbc.gridy= 4;
 		add(amountWithdraw, gbc);
 		
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.insets = new Insets(2,  35, 95,  35);
 		add(btnWithdraw, gbc);

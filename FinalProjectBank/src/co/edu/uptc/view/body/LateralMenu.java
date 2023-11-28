@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import co.edu.uptc.view.Constants;
-import co.edu.uptc.view.body.user.Options;
-import co.edu.uptc.view.body.user.ProfileInformation;
+import co.edu.uptc.view.body.user.lateral.Options;
+import co.edu.uptc.view.body.user.lateral.ProfileInformation;
 
 public class LateralMenu extends JPanel {
 	private static final long serialVersionUID = 1L;

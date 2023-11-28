@@ -86,7 +86,7 @@ public class PanelBeginning extends JPanel {
 		add(newCheck, gbc);
 	}
 	
-	public void styleButton(JButton btn, String comand, ActionListener listener, Insets insets, Color color) {
+	public static void styleButton(JButton btn, String comand, ActionListener listener, Insets insets, Color color) {
 		btn.setFont(Constants.FONTNORMAL);
 		btn.setForeground(Color.WHITE);
 		btn.setContentAreaFilled(false);

@@ -9,10 +9,10 @@ import java.awt.geom.Rectangle2D;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicButtonUI;
 
-public class ShapedButtonMenuHover extends BasicButtonUI {
+public class ShapedButtonMenu extends BasicButtonUI {
 	private Color background;
 	
-	public ShapedButtonMenuHover(Color background) {
+	public ShapedButtonMenu(Color background) {
 		this.background = background;
 	}
 	

@@ -54,7 +54,7 @@ public class Options extends JPanel {
 		btn.setCursor(Constants.HANDCURSOR);
 		btn.setMargin(insets);
 		btn.setFocusPainted(false);
-		btn.setUI(new ShapedButtonMenuHover(color));
+		btn.setUI(new ShapedButtonMenu(color));
 		btn.setActionCommand(comand);
 		btn.addActionListener(listener);
 	}

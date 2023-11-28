@@ -6,6 +6,7 @@ import java.awt.Font;
 
 public class Constants {
 	public static final Color COLORPANELLOGIN = new Color(132, 250, 176, 180);
+	public static final Color COLORPANELFUNTION = new Color(85, 221, 255, 180);
 	public static final Color COLORBACKGROUNDHEADER = new Color(0x230443);
 	public static final Color COLORFONTHEADER = new Color(0xffffff);
 	public static final Color GRAY = new Color(0x7d7e7c);

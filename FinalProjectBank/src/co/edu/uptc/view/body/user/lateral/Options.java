@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -13,11 +14,17 @@ import co.edu.uptc.view.Constants;
 
 public class Options extends JPanel {
 	private static final long serialVersionUID = 1L;
+	private ImageIcon iconConsign;
 	private JButton btnConsign;
+	private ImageIcon iconWithdraw;
 	private JButton btnWithdraw;
+	private ImageIcon iconTransfer;
 	private JButton btnTransfer;
+	private ImageIcon iconHistoryTransactions;
 	private JButton btnHistoryTransactions;
+	private ImageIcon iconChangePassword;
 	private JButton btnChangePassword;
+	private ImageIcon iconBlockCount;
 	private JButton btnBlockCount;
 	
 	public Options(ActionListener listener) {
@@ -27,23 +34,41 @@ public class Options extends JPanel {
 	}
 
 	private void initComponents(ActionListener listener) {
-		btnConsign = new JButton("Consignar");
-		styleButton(btnConsign, "pConsign", listener, new Insets(5, 66, 5, 66), Constants.COLORBACKGROUNDHEADER);
+		iconConsign = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/lateral/test.png"));
+		btnConsign = new JButton("CONSIGNAR");
+		btnConsign.setIcon(iconConsign);
+		btnConsign.setIconTextGap(11);
+		styleButton(btnConsign, "pConsign", listener, new Insets(5, 5, 5, 116), Constants.COLORBACKGROUNDHEADER);
 		
-		btnWithdraw = new JButton("Retirar");
-		styleButton(btnWithdraw, "pWithdraw", listener, new Insets(5, 77, 5, 77), Constants.COLORBACKGROUNDHEADER);
+		iconWithdraw = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/lateral/test.png"));
+		btnWithdraw = new JButton("RETIRAR");
+		btnWithdraw.setIcon(iconWithdraw);
+		btnWithdraw.setIconTextGap(11);
+		styleButton(btnWithdraw, "pWithdraw", listener, new Insets(5, 5, 5, 139), Constants.COLORBACKGROUNDHEADER);
 		
-		btnTransfer = new JButton("Transferir");
-		styleButton(btnTransfer, "pTransfer", listener, new Insets(5, 68, 5, 68), Constants.COLORBACKGROUNDHEADER);
+		iconTransfer = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/lateral/test.png"));
+		btnTransfer = new JButton("TRANSFERIR");
+		btnTransfer.setIcon(iconTransfer);
+		btnTransfer.setIconTextGap(11);
+		styleButton(btnTransfer, "pTransfer", listener, new Insets(5, 5, 5, 109), Constants.COLORBACKGROUNDHEADER);
 		
-		btnHistoryTransactions = new JButton("Historial");
-		styleButton(btnHistoryTransactions, "pHistoryTransactions", listener, new Insets(5, 73, 5, 73), Constants.COLORBACKGROUNDHEADER);
+		iconHistoryTransactions = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/lateral/test.png"));
+		btnHistoryTransactions = new JButton("HISTORIAL");
+		btnHistoryTransactions.setIcon(iconHistoryTransactions);
+		btnHistoryTransactions.setIconTextGap(11);
+		styleButton(btnHistoryTransactions, "pHistoryTransactions", listener, new Insets(5, 5, 5, 127), Constants.COLORBACKGROUNDHEADER);
 		
-		btnChangePassword = new JButton("Cambiar Contraseña");
-		styleButton(btnChangePassword, "pChangePassword", listener, new Insets(5, 31, 5, 31), Constants.COLORBACKGROUNDHEADER);
+		iconChangePassword = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/lateral/test.png"));
+		btnChangePassword = new JButton("CAMBIAR CONTRASEÑA");
+		btnChangePassword.setIcon(iconChangePassword);
+		btnChangePassword.setIconTextGap(11);
+		styleButton(btnChangePassword, "pChangePassword", listener, new Insets(5, 5, 5, 34), Constants.COLORBACKGROUNDHEADER);
 		
-		btnBlockCount = new JButton("<html><body style=\"text-align: center\">Desbloquear/Bloquear <br> Cuenta</body></html>");
-		styleButton(btnBlockCount, "pBlockCount", listener, new Insets(5, 27, 5, 27), Constants.COLORBACKGROUNDHEADER);
+		iconBlockCount = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/lateral/test.png"));
+		btnBlockCount = new JButton("<html><body style=\"text-align: center\">DESBLOQUEAR/BLOQUEAR<br> CUEANTA</body></html>");
+		btnBlockCount.setIcon(iconBlockCount);
+		btnBlockCount.setIconTextGap(10);
+		styleButton(btnBlockCount, "pBlockCount", listener, new Insets(5, 5, 5, 5), Constants.COLORBACKGROUNDHEADER);
 	}
 	
 	public void styleButton(JButton btn, String comand, ActionListener listener, Insets insets, Color color) {

@@ -11,12 +11,14 @@ import javax.swing.JPanel;
 
 import co.edu.uptc.view.body.user.funtions.PanelWithdraw;
 import co.edu.uptc.view.body.user.plusCenter.Balance;
+import co.edu.uptc.view.body.user.plusCenter.DateLogin;
 
 public class PanelCenterUser extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Image image;
 	private PanelWithdraw withdraw;
 	private Balance balance;
+	private DateLogin date;
 	
 	public PanelCenterUser(ActionListener listener) {
 		initComponents(listener);
@@ -27,12 +29,19 @@ public class PanelCenterUser extends JPanel {
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		
+		date = new DateLogin();
+		gbc.gridx = 2;
+		add(date, gbc);
+		
 		balance = new Balance(listener);
+		gbc.anchor = GridBagConstraints.NORTH;
+		gbc.gridy = 1;
+		gbc.gridx = 0;
 		add(balance, gbc);
 		
 		withdraw = new PanelWithdraw(listener);
 		gbc.gridx = 1;
-		gbc.gridy = 1;
+		gbc.anchor = GridBagConstraints.CENTER;
 		add(withdraw, gbc);
 	}
 	

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import co.edu.uptc.view.body.user.funtions.PanelTransfer;
 import co.edu.uptc.view.body.user.funtions.PanelWithdraw;
 import co.edu.uptc.view.body.user.plusCenter.Balance;
 import co.edu.uptc.view.body.user.plusCenter.DateLogin;
@@ -17,6 +18,7 @@ public class PanelCenterUser extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Image image;
 	private PanelWithdraw withdraw;
+	private PanelTransfer transfer;
 	private Balance balance;
 	private DateLogin date;
 	
@@ -35,14 +37,16 @@ public class PanelCenterUser extends JPanel {
 		
 		balance = new Balance(listener);
 		gbc.anchor = GridBagConstraints.NORTH;
-		gbc.gridy = 1;
+		gbc.gridy = 0;
 		gbc.gridx = 0;
 		add(balance, gbc);
 		
 		withdraw = new PanelWithdraw(listener);
+		transfer = new PanelTransfer(listener);
 		gbc.gridx = 1;
+		gbc.gridy = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
-		add(withdraw, gbc);
+		add(transfer, gbc);
 	}
 	
 	@Override

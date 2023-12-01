@@ -64,7 +64,7 @@ public class PanelTransfer extends JPanel {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
-		gbc.insets = new Insets(85,  0,  2,  0);
+		gbc.insets = new Insets(69,  0,  2,  0);
 		add(lblTitlePanel, gbc);
 		
 		gbc.gridy = 1;
@@ -94,7 +94,7 @@ public class PanelTransfer extends JPanel {
 		
 		gbc.gridy = 7;
 		gbc.fill = GridBagConstraints.NONE;
-		gbc.insets = new Insets(2,  35, 85,  35);
+		gbc.insets = new Insets(2,  35, 69,  35);
 		add(btnTransfer, gbc);
 	}
 }

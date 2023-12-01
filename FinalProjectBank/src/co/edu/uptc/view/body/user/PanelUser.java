@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import co.edu.uptc.view.body.LateralMenu;
 
@@ -23,6 +24,7 @@ public class PanelUser extends JPanel {
 		add(lateral, BorderLayout.WEST);
 		
 		panelCenter = new PanelCenterUser(listener);
-		add(panelCenter, BorderLayout.CENTER);
+		JScrollPane scroll = new JScrollPane(panelCenter);
+		add(scroll, BorderLayout.CENTER);
 	}
 }

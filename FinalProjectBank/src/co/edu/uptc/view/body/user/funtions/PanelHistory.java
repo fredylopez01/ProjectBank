@@ -34,14 +34,20 @@ public class PanelHistory extends JPanel {
 	}
 
 	private void initComponents() {
-		DefaultTableModel model = new DefaultTableModel();
+		DefaultTableModel model = new DefaultTableModel() {
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		model.addColumn("Fecha");
+		model.addColumn("Motivo");
+		model.addColumn("Cantidad");
 		String[] dates = new String[3];
 		dates[0] = "2022-21-10";
 		dates[1] = "2022-21-10";
 		dates[2] = "2022-21-10";
-		model.addColumn("Fecha");
-		model.addColumn("Motivo");
-		model.addColumn("Cantidad");
 		String[] motivo = new String[3];
 		motivo[0] = "Egreso";
 		motivo[1] = "Ingreso";
@@ -56,19 +62,19 @@ public class PanelHistory extends JPanel {
 		history = new JTable(model);
 		history.setBackground(Constants.COLORPANELLOGIN);
 		history.setAlignmentX(SwingConstants.CENTER);
-		styleTable();
 		setLayout(new GridBagLayout());
 		scroll = new JScrollPane(history, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setPreferredSize(new Dimension(240, 355));
+		styleTable();
 		GridBagConstraints gbc = new GridBagConstraints();
 		add(scroll, gbc);
-		scroll.setVisible(false);
+//		scroll.setVisible(false);
 		
 		lblNoTransactions = new JLabel("<html><body style=\"text-align: center\">"
 				+ "No se han registrado movimientos<br>en esta cuenta hasta el momento"
 				+ "</body></html>");
 		lblNoTransactions.setFont(Constants.FONTNAMEUSER);
-		add(lblNoTransactions, gbc);
+//		add(lblNoTransactions, gbc);
 	}
 	
 	public void styleTable() {
@@ -92,6 +98,12 @@ public class PanelHistory extends JPanel {
 			}
 		});
 		history.setTableHeader(jth);
+		history.setOpaque(false);
+		history.setShowVerticalLines(false);
+		history.setShowHorizontalLines(true);
+		
+		scroll.setOpaque(false);
+		scroll.getViewport().setOpaque(false);
 	}
 
 }

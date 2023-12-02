@@ -5,43 +5,27 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 import co.edu.uptc.view.Constants;
-import co.edu.uptc.view.body.login.PanelBeginning;
-import co.edu.uptc.view.body.login.ShapedPanelLoginUI;
 
-public class PanelTransfer extends JPanel {
+public class PanelTransfer extends PanelFuntionBasic {
 	private static final long serialVersionUID = 1L;
-	private JLabel lblTitlePanel;
-	private JLabel lblPassword;
-	private JPasswordField password;
 	private JLabel lblNCheck;
 	private JTextField numberCheckTwo;
 	private JLabel lblAmount;
 	private JSpinner amount;
-	private JButton btnTransfer;
 	
 	public PanelTransfer(ActionListener listener) {
-		setUI(new ShapedPanelLoginUI(Constants.COLORPANELFUNTION));
+		super();
 		initComponents(listener);
 		addComponents();
 	}
 
 	private void initComponents(ActionListener listener) {
-		lblTitlePanel = new JLabel("Transferir");
-		lblTitlePanel.setFont(Constants.FONTTITLEPANEL);
-		
-		lblPassword = new JLabel("Contraseña");
-		lblPassword.setFont(Constants.FONTNORMAL);
-		
-		password = new JPasswordField(18);
-		password.setFont(Constants.FONTNORMAL);
+		lblTitlePanel.setText("Transferir");
 		
 		lblNCheck = new JLabel("N. Cuenta Destino");
 		lblNCheck.setFont(Constants.FONTNORMAL);
@@ -55,9 +39,8 @@ public class PanelTransfer extends JPanel {
 		amount = new JSpinner();
 		amount.setFont(Constants.FONTNORMAL);
 		
-		btnTransfer = new JButton("Transferir");
-		btnTransfer.setFont(Constants.FONTNORMAL);
-		PanelBeginning.styleButton(btnTransfer, "withdraw", listener, new Insets(5, 15, 5, 15), Constants.GREEN);
+		btnAction.setText("Transferir");
+		actionButton(btnAction, "withdraw", listener);
 	}
 
 	private void addComponents() {
@@ -95,6 +78,6 @@ public class PanelTransfer extends JPanel {
 		gbc.gridy = 7;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.insets = new Insets(2,  35, 69,  35);
-		add(btnTransfer, gbc);
+		add(btnAction, gbc);
 	}
 }

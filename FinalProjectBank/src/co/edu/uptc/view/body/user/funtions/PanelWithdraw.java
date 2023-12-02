@@ -5,40 +5,24 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 
 import co.edu.uptc.view.Constants;
-import co.edu.uptc.view.body.login.PanelBeginning;
-import co.edu.uptc.view.body.login.ShapedPanelLoginUI;
 
-public class PanelWithdraw extends JPanel {
+public class PanelWithdraw extends PanelFuntionBasic {
 	private static final long serialVersionUID = 1L;
-	private JLabel lblTitlePanel;
-	private JLabel lblPassword;
-	private JPasswordField password;
 	private JLabel lblAmount;
 	private JSpinner amount;
-	private JButton btnWithdraw;
 	
 	public PanelWithdraw(ActionListener listener) {
-		setUI(new ShapedPanelLoginUI(Constants.COLORPANELFUNTION));
+		super();
 		initComponents(listener);
 		addComponents();
 	}
 
 	private void initComponents(ActionListener listener) {
-		lblTitlePanel = new JLabel("Retirar");
-		lblTitlePanel.setFont(Constants.FONTTITLEPANEL);
-		
-		lblPassword = new JLabel("Contraseña");
-		lblPassword.setFont(Constants.FONTNORMAL);
-		
-		password = new JPasswordField(18);
-		password.setFont(Constants.FONTNORMAL);
+		lblTitlePanel.setText("Retirar");
 		
 		lblAmount = new JLabel("¿Cuanto?");
 		lblAmount.setFont(Constants.FONTNORMAL);
@@ -46,9 +30,8 @@ public class PanelWithdraw extends JPanel {
 		amount = new JSpinner();
 		amount.setFont(Constants.FONTNORMAL);
 		
-		btnWithdraw = new JButton("Retirar");
-		btnWithdraw.setFont(Constants.FONTNORMAL);
-		PanelBeginning.styleButton(btnWithdraw, "withdraw", listener, new Insets(5, 15, 5, 15), Constants.GREEN);
+		btnAction.setText("Retirar");
+		actionButton(btnAction, "withdraw", listener);
 	}
 
 	private void addComponents() {
@@ -78,6 +61,6 @@ public class PanelWithdraw extends JPanel {
 		gbc.gridy = 5;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.insets = new Insets(2,  35, 95,  35);
-		add(btnWithdraw, gbc);
+		add(btnAction, gbc);
 	}
 }

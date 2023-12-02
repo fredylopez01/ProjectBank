@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import co.edu.uptc.view.body.user.funtions.PanelChangePassword;
 import co.edu.uptc.view.body.user.funtions.PanelHistory;
 import co.edu.uptc.view.body.user.funtions.PanelTransfer;
 import co.edu.uptc.view.body.user.funtions.PanelWithdraw;
@@ -21,6 +22,7 @@ public class PanelCenterUser extends JPanel {
 	private PanelWithdraw withdraw;
 	private PanelTransfer transfer;
 	private PanelHistory history;
+	private PanelChangePassword changePassword;
 	private Balance balance;
 	private DateLogin date;
 	
@@ -58,6 +60,11 @@ public class PanelCenterUser extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		add(history, gbc);
+		
+		changePassword = new PanelChangePassword(listener);
+		gbc.gridx = 3;
+		gbc.gridy = 1;
+		add(changePassword, gbc);
 	}
 	
 	@Override

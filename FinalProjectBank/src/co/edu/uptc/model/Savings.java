@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Savings extends Check {
+	private static final long serialVersionUID = 1L;
 	private double interest;
 	private static double miniumBalance;
 	private LocalDate interestDate;
 
-	public Savings(Person owner, String password, LocalDate creationDate) {
-		super(owner, password, creationDate);
+	public Savings(int number,Person owner, String password, LocalDate creationDate) {
+		super(number, owner, password, creationDate);
 		miniumBalance = 5000;
 		interestDate = creationDate;
 		interest = 0.1;

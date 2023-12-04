@@ -1,9 +1,11 @@
 package co.edu.uptc.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Check {
+public class Check implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Person owner;
 	private int number;
 	private double remmant;
@@ -11,12 +13,10 @@ public class Check {
 	private boolean isBlocked;
 	private LocalDate creationDate;
 	private ArrayList<BankingTransaction> bankingTransactions;
-	private static int firts = 123;
 	
-	public Check(Person owner, String password, LocalDate creationDate) {
+	public Check(int firts, Person owner, String password, LocalDate creationDate) {
 		this.owner = owner;
-		this.number = firts;
-		firts += (int) (Math.random()*1000+1);
+		this.number = (firts += (int) (Math.random()*1000+1));
 		this.password = password;
 		this.creationDate = creationDate;
 		bankingTransactions = new ArrayList<BankingTransaction>();

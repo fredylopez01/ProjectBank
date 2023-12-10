@@ -31,4 +31,5 @@ public class LateralMenu extends JPanel {
 		gbc.gridy = 1;
 		add(options, gbc);
 	}
+	
 }

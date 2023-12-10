@@ -24,7 +24,7 @@ public class ProfileInformation extends JPanel {
 	
 	public ProfileInformation(ActionListener listener) {
 		setBorder(new EmptyBorder(10, 19, 10, 19));
-		setBackground(Constants.COLORBACKGROUNDPANELTWO);
+		setBackground(Constants.COLORPANELLOGIN);
 		initComponents(listener);
 		addComponents();
 	}

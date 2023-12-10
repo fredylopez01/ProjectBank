@@ -10,6 +10,7 @@ public class Constants {
 	public static final Color GRAY = new Color(144, 145, 128);
 	public static final Color COLORPANELLOGIN = new Color(132, 250, 176, 180);
 	public static final Color COLORPANELFUNTION = new Color(85, 221, 255, 180);
+	public static final Color TRANSPARENT = new Color(255, 255, 255, 0);
 	public static final Color COLORBACKGROUNDHEADER = new Color(0x230443);
 	public static final Color COLORFONTHEADER = new Color(0xffffff);
 	public static final Color COLORBACKGROUNDPANEL = new Color(0x55ddff);

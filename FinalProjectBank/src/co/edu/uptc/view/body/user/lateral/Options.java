@@ -28,7 +28,7 @@ public class Options extends JPanel {
 	private JButton btnBlockCount;
 	
 	public Options(ActionListener listener) {
-		setBackground(Constants.COLORBACKGROUNDPANEL);
+		setBackground(Constants.TRANSPARENT);
 		initComponents(listener);
 		addComponents();
 	}

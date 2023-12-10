@@ -1,5 +1,6 @@
 package co.edu.uptc.view.body.user;
 
+import java.awt.CardLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,23 +10,16 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import co.edu.uptc.view.body.user.funtions.PanelBlockCheck;
-import co.edu.uptc.view.body.user.funtions.PanelChangePassword;
-import co.edu.uptc.view.body.user.funtions.PanelHistory;
-import co.edu.uptc.view.body.user.funtions.PanelTransfer;
-import co.edu.uptc.view.body.user.funtions.PanelWithdraw;
+import co.edu.uptc.view.body.user.funtions.PanelFuntions;
 import co.edu.uptc.view.body.user.plusCenter.Balance;
 import co.edu.uptc.view.body.user.plusCenter.DateLogin;
 
 public class PanelCenterUser extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Image image;
-	private PanelWithdraw withdraw;
-	private PanelTransfer transfer;
-	private PanelHistory history;
-	private PanelChangePassword changePassword;
-	private PanelBlockCheck blockCheck;
 	private Balance balance;
+	private PanelFuntions funtions;
+	private CardLayout layoutFuntions;
 	private DateLogin date;
 	
 	public PanelCenterUser(ActionListener listener) {
@@ -47,31 +41,14 @@ public class PanelCenterUser extends JPanel {
 		gbc.gridx = 0;
 		add(balance, gbc);
 		
-		withdraw = new PanelWithdraw(listener);
-		gbc.gridx = 1;
-		gbc.gridy = 1;
+		funtions = new PanelFuntions(listener);
+		layoutFuntions = (CardLayout) funtions.getLayout();
+		layoutFuntions.show(funtions, "pBlockCount");
 		gbc.anchor = GridBagConstraints.CENTER;
-		add(withdraw, gbc);
-		
-		transfer = new PanelTransfer(listener);
-		gbc.gridx = 2;
 		gbc.gridy = 1;
-		add(transfer, gbc);
-		
-		history = new PanelHistory();
 		gbc.gridx = 1;
-		gbc.gridy = 2;
-		add(history, gbc);
-		
-		changePassword = new PanelChangePassword(listener);
-		gbc.gridx = 3;
-		gbc.gridy = 1;
-		add(changePassword, gbc);
-		
-		blockCheck = new PanelBlockCheck(listener);
-		gbc.gridx = 2;
-		gbc.gridy = 2;
-		add(blockCheck, gbc);
+		add(funtions, gbc);
+		layoutFuntions.show(funtions, "pWithdraw");
 	}
 	
 	@Override

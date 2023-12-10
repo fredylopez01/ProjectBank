@@ -30,7 +30,7 @@ public class PanelBlockCheck extends PanelFuntionBasic {
 		lblNumberCheck.setFont(Constants.FONTNORMAL);
 		
 		numberCheck = new JTextField(18);
-		password.setFont(Constants.FONTNORMAL);
+		numberCheck.setFont(Constants.FONTNORMAL);
 		
 		btnAction.setText("Bloquear");
 		actionButton(btnAction, "blockCount", listener);

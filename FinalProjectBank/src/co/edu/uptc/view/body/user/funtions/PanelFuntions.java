@@ -1,6 +1,7 @@
 package co.edu.uptc.view.body.user.funtions;
 
 import java.awt.CardLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
@@ -40,5 +41,10 @@ public class PanelFuntions extends JPanel {
 		blockCheck = new PanelBlockCheck(listener);
 		add(blockCheck, "pBlockCount");
 	}
-
+	
+	@Override
+	public void paint(Graphics g) {
+		setOpaque(false);
+		super.paint(g);
+	}
 }

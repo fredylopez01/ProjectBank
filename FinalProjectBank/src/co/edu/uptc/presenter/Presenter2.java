@@ -16,10 +16,12 @@ import co.edu.uptc.model.exceptions.ExceptionAmountCero;
 import co.edu.uptc.model.exceptions.ExceptionSamePassword;
 import co.edu.uptc.model.exceptions.ExceptionWithoutRemmant;
 import co.edu.uptc.persistence.Persistence;
+import co.edu.uptc.view.MainView;
 import co.edu.uptc.view.View;
 
 public class Presenter2 implements ActionListener {
 	private Bank bankTest;
+	private MainView view;
 	private View viewTest;
 	private Persistence persistenceTest;
 	
@@ -27,11 +29,12 @@ public class Presenter2 implements ActionListener {
 		persistenceTest = new Persistence("data/dates.dat");
 		bankTest = persistenceTest.loadDates();
 		viewTest = new View();
+		view = new MainView(this);
 	}
 	
 	public static void main (String [] args) {
 		Presenter2 presenterTest = new Presenter2();	
-		presenterTest.run();
+//		presenterTest.run();
 	}
 	
 	@Override

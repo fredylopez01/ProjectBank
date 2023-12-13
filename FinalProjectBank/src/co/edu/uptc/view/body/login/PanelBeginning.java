@@ -28,7 +28,6 @@ public class PanelBeginning extends JPanel {
 	
 	public PanelBeginning(ActionListener listener) {
 		setUI(new ShapedPanelLoginUI(Constants.COLORPANELLOGIN));
-		setBackground(Constants.COLORBACKGROUNDPANELTWO);
 		initComponents(listener);
 	}
 
@@ -97,5 +96,17 @@ public class PanelBeginning extends JPanel {
 		btn.setUI(new ShapedButtonProfile(color));
 		btn.setActionCommand(comand);
 		btn.addActionListener(listener);
+	}
+	
+	public String getPassword() {
+		StringBuilder passwordTxt = new StringBuilder();
+		for(char i: password.getPassword()) {
+			passwordTxt.append(i);
+		}
+		return passwordTxt.toString();
+	}
+	
+	public String getNumberCheck() {
+		return numberCheck.getText();
 	}
 }

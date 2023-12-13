@@ -12,6 +12,7 @@ import co.edu.uptc.model.Check;
 import co.edu.uptc.model.Current;
 import co.edu.uptc.model.Person;
 import co.edu.uptc.model.Savings;
+import co.edu.uptc.model.VerifyExpresitions;
 import co.edu.uptc.model.exceptions.ExceptionAmountCero;
 import co.edu.uptc.model.exceptions.ExceptionSamePassword;
 import co.edu.uptc.model.exceptions.ExceptionWithoutRemmant;
@@ -21,6 +22,7 @@ import co.edu.uptc.view.View;
 
 public class Presenter2 implements ActionListener {
 	private Bank bankTest;
+	private VerifyExpresitions verify;
 	private MainView view;
 	private View viewTest;
 	private Persistence persistenceTest;
@@ -28,6 +30,7 @@ public class Presenter2 implements ActionListener {
 	public Presenter2() {
 		persistenceTest = new Persistence("data/dates.dat");
 		bankTest = persistenceTest.loadDates();
+		verify = new VerifyExpresitions();
 		viewTest = new View();
 		view = new MainView(this);
 	}
@@ -39,7 +42,46 @@ public class Presenter2 implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		String comand = e.getActionCommand();
+		switch (comand){
+		case "login" -> login();
+		case "ok" -> view.ok();
+		}
+	}
+	
+	public void login() {
+		String numberCheck = view.getLoginNumberCheck();
+		if(verify.isCorrectFormatNumberCheck(numberCheck)) {
+			Check account = bankTest.searchCheck(Integer.valueOf(numberCheck));
+			if(verifyCheck(account)) {
+				menuUser(account);
+			}
+		} else {
+			view.message("Formato de número de cuenta incorrecto");
+		}
+	}
+	
+	public boolean verifyCheck(Check check) {
+		boolean isCorrect = false;
+		if(check != null) {
+			if(!check.isBlocked()) {
+				String password = view.getLoginPassword();
+				if(verify.isCorrectFormatPassword(password)) {
+					if(bankTest.verifyPassword(check, password)) {
+						isCorrect = true;
+					} else {
+						view.message("Contraseña incorrecta");
+					}
+				} else {
+					view.message("La contraseña debe estar compuesta por 4 números");
+				}
+			} else {
+				view.message("Cuenta bloqueada");
+			}
+		} else {
+			view.message("Cuenta no existente");
+		}
+		return isCorrect;
 	}
 	
 	public void run() {
@@ -318,24 +360,6 @@ public class Presenter2 implements ActionListener {
 		} catch (ExceptionAmountCero e) {
 			viewTest.showMessage(e.getMessage(), "Excepción", viewTest.getIncorrect());
 		}
-	}
-	
-	public boolean verifyCheck(Check check) {
-		boolean isCorrect = false;
-		if(check != null) {
-			if(!check.isBlocked()) {
-				if(bankTest.verifyPassword(check, viewTest.readString("Ingrese la contraseña para poder realizar la acción", "Pregunta", viewTest.getSignQuestion()))) {
-					isCorrect = true;
-				} else {
-					viewTest.showMessage("Contraseña incorrecta", "Error", viewTest.getIncorrect());
-				}
-			} else {
-				viewTest.showMessage("Cuenta bloqueada", "Error", viewTest.getIncorrect());
-			}
-		} else {
-			viewTest.showMessage("Cuenta no existente", "Error", viewTest.getIncorrect());
-		}
-		return isCorrect;
 	}
 	
 	public void transfer(Check check) {

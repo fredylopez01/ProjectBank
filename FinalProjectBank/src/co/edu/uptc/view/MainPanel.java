@@ -25,4 +25,12 @@ public class MainPanel extends JPanel {
 		panelUser = new PanelUser(listener);
 		add(panelUser, "panelUser");
 	}
+	
+	public String getLoginPassword() {
+		return contentBegin.getBegin().getPassword();
+	}
+	
+	public String getLoginNumberCheck() {
+		return contentBegin.getBegin().getNumberCheck();
+	}
 }

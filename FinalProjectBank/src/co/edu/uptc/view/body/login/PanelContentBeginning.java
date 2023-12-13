@@ -34,5 +34,13 @@ public class PanelContentBeginning extends JPanel {
 		setOpaque(false);
 		super.paint(g);
 	}
+
+	public PanelBeginning getBegin() {
+		return begin;
+	}
+
+	public void setBegin(PanelBeginning begin) {
+		this.begin = begin;
+	}
 	
 }

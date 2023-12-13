@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private MainPanel mainPanel;
+	private JDMessage jdMessage;
 	
 	public MainView(ActionListener listener) {
 		super("Banco de Confianza");
@@ -25,5 +26,24 @@ public class MainView extends JFrame {
 		
 		mainPanel = new MainPanel(listener);
 		add(mainPanel, BorderLayout.CENTER);
+		
+		jdMessage = new JDMessage(listener, this);
+	}
+	
+	public String getLoginPassword() {
+		return mainPanel.getLoginPassword();
+	}
+	
+	public String getLoginNumberCheck() {
+		return mainPanel.getLoginNumberCheck();
+	}
+	
+	public void message(String message) {
+		jdMessage.getLblMessage().setText(message);
+		jdMessage.setVisible(true);
+	}
+	
+	public void ok() {
+		jdMessage.dispose();
 	}
 }

@@ -3,6 +3,7 @@ package co.edu.uptc.view.body.user.lateral;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,7 +16,7 @@ public class ProfileInformation extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ImageIcon imgUser;
 	private JLabel img;
-	private JLabel lblOwner;
+	private JLabel lblName;
 	private JLabel lblIdentification;
 	private JLabel identification;
 	private JLabel lblNumberCheck;
@@ -33,8 +34,8 @@ public class ProfileInformation extends JPanel {
 		imgUser = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/changeAccount.png"));
 		img = new JLabel(imgUser);
 		
-		lblOwner = new JLabel("<html><body style=\"text-align: center\">FREDY OSWALDO<br> LÓPEZ DAZA</body></html>");
-		lblOwner.setFont(Constants.FONTNAMEUSER);
+		lblName = new JLabel("<html><body style=\"text-align: center\">FREDY OSWALDO<br> LÓPEZ DAZA</body></html>");
+		lblName.setFont(Constants.FONTNAMEUSER);
 		
 		lblIdentification = new JLabel("Identificación: ");
 		lblIdentification.setFont(Constants.FONTDATESUSER);
@@ -60,7 +61,7 @@ public class ProfileInformation extends JPanel {
 		add(img, gbc);
 		
 		gbc.gridy = 1;
-		add(lblOwner, gbc);
+		add(lblName, gbc);
 		
 		gbc.gridwidth = 1;
 		gbc.gridy = 2;
@@ -82,5 +83,12 @@ public class ProfileInformation extends JPanel {
 		gbc.gridy = 4;
 		gbc.anchor = GridBagConstraints.CENTER;
 		add(lblTypeAccount, gbc);
+	}
+	
+	public void loadDates(ArrayList<String> dates) {
+		lblName.setText(dates.get(0));
+		identification.setText(dates.get(1));
+		numberCheck.setText(dates.get(2));
+		lblTypeAccount.setText(dates.get(3));
 	}
 }

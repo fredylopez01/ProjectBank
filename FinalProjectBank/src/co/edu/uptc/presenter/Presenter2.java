@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import co.edu.uptc.model.Bank;
@@ -54,7 +55,8 @@ public class Presenter2 implements ActionListener {
 		if(verify.isCorrectFormatNumberCheck(numberCheck)) {
 			Check account = bankTest.searchCheck(Integer.valueOf(numberCheck));
 			if(verifyCheck(account)) {
-				menuUser(account);
+				loadDatesProfile(account);
+				view.showPanelUser();
 			}
 		} else {
 			view.message("Formato de número de cuenta incorrecto");
@@ -66,14 +68,10 @@ public class Presenter2 implements ActionListener {
 		if(check != null) {
 			if(!check.isBlocked()) {
 				String password = view.getLoginPassword();
-				if(verify.isCorrectFormatPassword(password)) {
-					if(bankTest.verifyPassword(check, password)) {
-						isCorrect = true;
-					} else {
-						view.message("Contraseña incorrecta");
-					}
+				if(bankTest.verifyPassword(check, password)) {
+					isCorrect = true;
 				} else {
-					view.message("La contraseña debe estar compuesta por 4 números");
+					view.message("Contraseña incorrecta");
 				}
 			} else {
 				view.message("Cuenta bloqueada");
@@ -82,6 +80,21 @@ public class Presenter2 implements ActionListener {
 			view.message("Cuenta no existente");
 		}
 		return isCorrect;
+	}
+	
+	public void loadDatesProfile(Check check) {
+		ArrayList<String> dates = new ArrayList<>();
+		dates.add(String.valueOf(check.getOwner().getName()));
+		dates.add(String.valueOf(check.getOwner().getId()));
+		dates.add(String.valueOf(check.getNumber()));
+		if(check instanceof Current) {
+			dates.add("Cuenta Corriente");
+		} else if(check instanceof Savings) {
+			dates.add("Cuenta Ahorros");
+		}
+		view.loadDatesProfile(dates);
+		double remant = check.getRemmant();
+		view.updateRemant(remant);
 	}
 	
 	public void run() {

@@ -42,5 +42,9 @@ public class Balance extends JPanel {
 		gbc.insets = new Insets(2, 5, 20, 5);
 		add(balanceValue, gbc);
 	}
+	
+	public void updateRemant(double remant) {
+		balanceValue.setText(String.valueOf(remant));
+	}
 
 }

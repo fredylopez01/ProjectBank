@@ -1,7 +1,9 @@
 package co.edu.uptc.view;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -9,6 +11,7 @@ import javax.swing.JFrame;
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private MainPanel mainPanel;
+	private CardLayout layoutMainPanel;
 	private JDMessage jdMessage;
 	
 	public MainView(ActionListener listener) {
@@ -26,6 +29,8 @@ public class MainView extends JFrame {
 		
 		mainPanel = new MainPanel(listener);
 		add(mainPanel, BorderLayout.CENTER);
+		
+		layoutMainPanel = (CardLayout) mainPanel.getLayout();
 		
 		jdMessage = new JDMessage(listener, this);
 	}
@@ -45,5 +50,17 @@ public class MainView extends JFrame {
 	
 	public void ok() {
 		jdMessage.dispose();
+	}
+	
+	public void loadDatesProfile(ArrayList<String> dates) {
+		mainPanel.loadDatesProfile(dates);
+	}
+	
+	public void updateRemant(double remant) {
+		mainPanel.updateRemant(remant);
+	}
+	
+	public void showPanelUser() {
+		layoutMainPanel.show(mainPanel, "panelUser");
 	}
 }

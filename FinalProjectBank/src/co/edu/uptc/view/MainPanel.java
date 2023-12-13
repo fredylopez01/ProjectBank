@@ -2,6 +2,7 @@ package co.edu.uptc.view;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -32,5 +33,13 @@ public class MainPanel extends JPanel {
 	
 	public String getLoginNumberCheck() {
 		return contentBegin.getBegin().getNumberCheck();
+	}
+	
+	public void loadDatesProfile(ArrayList<String> dates) {
+		panelUser.loadDatesProfile(dates);
+	}
+	
+	public void updateRemant(double remant) {
+		panelUser.updateRemant(remant);
 	}
 }

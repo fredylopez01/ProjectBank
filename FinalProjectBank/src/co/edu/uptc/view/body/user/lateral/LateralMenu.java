@@ -1,14 +1,13 @@
-package co.edu.uptc.view.body;
+package co.edu.uptc.view.body.user.lateral;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import co.edu.uptc.view.Constants;
-import co.edu.uptc.view.body.user.lateral.Options;
-import co.edu.uptc.view.body.user.lateral.ProfileInformation;
 
 public class LateralMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -30,6 +29,10 @@ public class LateralMenu extends JPanel {
 		options = new Options(listener);
 		gbc.gridy = 1;
 		add(options, gbc);
+	}
+	
+	public void loadDatesProfile(ArrayList<String> dates) {
+		infoUser.loadDates(dates);
 	}
 	
 }

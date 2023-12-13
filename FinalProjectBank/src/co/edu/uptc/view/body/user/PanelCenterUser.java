@@ -51,6 +51,10 @@ public class PanelCenterUser extends JPanel {
 		layoutFuntions.show(funtions, "pWithdraw");
 	}
 	
+	public void updateRemant(double remant) {
+		balance.updateRemant(remant);
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		image = new ImageIcon(getClass().getResource("/co/edu/uptc/view/images/background.jpg")).getImage();
